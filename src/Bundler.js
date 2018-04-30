@@ -113,6 +113,7 @@ class Bundler extends EventEmitter {
         typeof options.minify === 'boolean' ? options.minify : isProduction,
       target: target,
       hmr: hmr,
+      bundleAll: options.bundleAll || false,
       https: options.https || false,
       logLevel: isNaN(options.logLevel) ? 3 : options.logLevel,
       entryFiles: this.entryFiles,
