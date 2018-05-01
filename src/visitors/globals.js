@@ -19,8 +19,9 @@ const VARS = {
 
 module.exports = {
   MemberExpression(node, asset) {
-    // Inline environment variables accessed on process.env
-    if (matchesPattern(node.object, 'process.env')) {
+    // Inline environment variables accessed on process.env for browser target only
+    // but do not remove normal process.env for node and electron targets
+    if (matchesPattern(node.object, 'process.env') && asset.options.target === 'browser') {
       let key = types.toComputedKey(node);
       if (types.isStringLiteral(key)) {
         let val = types.valueToNode(process.env[key.value]);
