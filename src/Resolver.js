@@ -273,6 +273,11 @@ class Resolver {
       browser = browser[pkg.name];
     }
 
+    // non-browser targets do not want browser versions of packages
+    if (this.options.target !== 'browser') {
+      browser = undefined;
+    }
+
     // libraries like d3.js specifies node.js specific files in the "main" which breaks the build
     // we use the "module" or "browser" field to get the full dependency tree if available.
     // If this is a linked module with a `source` field, use that as the entry point.
@@ -333,7 +338,7 @@ class Resolver {
     return (
       this.getAlias(filename, pkg.pkgdir, pkg.source) ||
       this.getAlias(filename, pkg.pkgdir, pkg.alias) ||
-      this.getAlias(filename, pkg.pkgdir, pkg.browser) ||
+      (this.options.target === 'browser' && this.getAlias(filename, pkg.pkgdir, pkg.browser)) ||
       filename
     );
   }
