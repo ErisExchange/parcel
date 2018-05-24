@@ -115,6 +115,7 @@ class Bundler extends EventEmitter {
       hmr: hmr,
       bundleAll: options.bundleAll || false,
       ignore: options.ignore ? new Set(options.ignore.split(',')) : new Set(),
+      browserModules: options.browserModules ? new Set(options.browserModules.split(',')) : new Set(),
       https: options.https || false,
       logLevel: isNaN(options.logLevel) ? 3 : options.logLevel,
       entryFiles: this.entryFiles,

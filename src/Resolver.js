@@ -273,8 +273,8 @@ class Resolver {
       browser = browser[pkg.name];
     }
 
-    // non-browser targets do not want browser versions of packages
-    if (this.options.target !== 'browser') {
+    // non-browser targets do not want browser versions of packages unless explicitly whitelisted
+    if (this.options.target !== 'browser' && !this.options.browserModules.has(pkg.name)) {
       browser = undefined;
     }
 
