@@ -114,6 +114,7 @@ class Bundler extends EventEmitter {
       target: target,
       hmr: hmr,
       bundleAll: options.bundleAll || false,
+      ignore: options.ignore ? new Set(options.ignore.split(',')) : new Set(),
       https: options.https || false,
       logLevel: isNaN(options.logLevel) ? 3 : options.logLevel,
       entryFiles: this.entryFiles,
@@ -421,6 +422,11 @@ class Bundler extends EventEmitter {
 
   async resolveDep(asset, dep, install = true) {
     try {
+      // Check for ignored modules
+      if (this.options.ignore.has(dep.name)) {
+        return;
+      }
+
       if (dep.resolved) {
         return this.getLoadedAsset(dep.resolved);
       }
