@@ -106,6 +106,7 @@ class Bundler extends EventEmitter {
       target: target,
       bundleAll: options.bundleAll || false,
       ignore: options.ignore ? new Set(options.ignore.split(',')) : new Set(),
+      browserModules: options.browserModules ? new Set(options.browserModules.split(',')) : new Set(),
       hmr:
         target === 'node'
           ? false

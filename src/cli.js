@@ -59,6 +59,10 @@ program
     '-i, --ignore <modules>',
     'comma-separated list of modules to ignore. useful for ignoring conditional requires such as "lib-cov"'
   )
+  .option(
+    '--browser-modules <modules>',
+    'comma-separated list of modules to bundle using browser versions, even when targeting node'
+  )
   .option('-V, --version', 'output the version number')
   .option(
     '--log-level <level>',
@@ -110,6 +114,10 @@ program
     'comma-separated list of modules to ignore. useful for ignoring conditional requires such as "lib-cov"'
   )
   .option(
+    '--browser-modules <modules>',
+    'comma-separated list of modules to bundle using browser versions, even when targeting node'
+  )
+  .option(
     '--log-level <level>',
     'set the log level, either "0" (no output), "1" (errors), "2" (warnings + errors) or "3" (all).',
     /^([0-3])$/
@@ -147,6 +155,10 @@ program
   .option(
     '-i, --ignore <modules>',
     'comma-separated list of modules to ignore. useful for ignoring conditional requires such as "lib-cov"'
+  )
+  .option(
+    '--browser-modules <modules>',
+    'comma-separated list of modules to bundle using browser versions, even when targeting node'
   )
   .option(
     '--detailed-report',

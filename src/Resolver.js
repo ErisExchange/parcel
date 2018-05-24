@@ -273,7 +273,7 @@ class Resolver {
       browser = browser[pkg.name];
     }
 
-    if (this.options.target !== 'browser') {
+    if (this.options.target !== 'browser' && !this.options.browserModules.has(pkg.name)) {
       browser = undefined;
     }
 
